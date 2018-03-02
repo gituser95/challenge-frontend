@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>React DataTable</title>
+    <link href="node_modules/fixed-data-table-2/dist/fixed-data-table.css" 
+          rel="stylesheet">
+  </head>
+  <body style="font-family:arial;font-size:12px; background:#e1e1e1">
+    <div id="root"></div>
+    <script src="bundle.js"></script>
+    <h2>Display a map of the devices using the lat-long coordinates stored in the JSON file !</h2>
+<div id="map"></div>
+    <script>
+      function initMap() {
+         var myLatlng = {lat: 50.751412, lng: 4.432708};
+         var myLatlng1 = {lat:  48.974844, lng:  1.199616};
+         var myLatlng2 = {lat: 48.846204, lng: 2.317044};
+
+        var map = new window.google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: myLatlng
+        });
+        var bounds = new google.maps.LatLngBounds();
+        bounds.extend(myLatlng );
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          title: 'Michel s Scooter'
+        });
+         bounds.extend(myLatlng1);
+       var marker1 = new google.maps.Marker({
+          position: myLatlng1,
+          map: map,
+          title: 'Le tracteur à Jacquie'
+        });
+         bounds.extend(myLatlng2);
+        var marker2 = new google.maps.Marker({
+          position: myLatlng2,
+          map: map,
+          title: '🚀 '
+        });
+         map.fitBounds(bounds);
+       
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqVUsTg-IuZGFl4Cl5W9DPpJrZiS58YIA&callback=initMap">
+    </script>
